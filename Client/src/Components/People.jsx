@@ -1,5 +1,6 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 // Components
 import Person from "./Person";
@@ -8,14 +9,17 @@ import Person from "./Person";
 import { peopleList } from "../Data/People";
 
 // Icons
-import { TiArrowRight } from "react-icons/ti";
+import { IoIosClose } from "react-icons/io";
 
-export default function People() {
+export default function People({ selPg,setSelPg }) {
+  const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
+  let isPeople=selPg=='People'?'People':'hidden'
+
   return (
-    <div className="People">
-      <header className="h-[10%] w-[100%] flex justify-around mb-2">
-        <span className="flex items-center font-bold text-lg">People</span>
-        <span className="flex items-center gap-1 hover:text-[#4f46e5] cursor-pointer">View all <TiArrowRight className="text-xl"/></span>
+    <div className={`${isMobile?isPeople:'People'}`}>
+      <header className="h-[10%] w-[100%] flex justify-between items-center p-3">
+        <span className="text-lg">People</span>
+        {isMobile && <IoIosClose className="text-xl" onClick={() => { setSelPg('Events') }} />}
       </header>
       {peopleList.map((P) => (
         <Person

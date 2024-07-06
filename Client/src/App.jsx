@@ -1,20 +1,22 @@
-// Navbar component
-import Navbar from "./Components/Navbar";
+// Libraries
+import react, {useState} from "react";
 
-// Main components
+// Components
 import Events from "./Components/Events";
 import People from "./Components/People";
+import Account from "./Components/Account";
 
 // Style Sheets 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
 function App() {
+  const[selPg,setSelPg] = useState('Events')
   return (
     <main>
-      <Navbar />
-      <Events />
-      <People />
+      <Account selPg={selPg} setSelPg={setSelPg}/>
+      <Events selPg={selPg} setSelPg={setSelPg}/>
+      <People selPg={selPg} setSelPg={setSelPg}/>
     </main>
   );
 }

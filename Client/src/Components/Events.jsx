@@ -1,20 +1,21 @@
 // Libraries
-import React from "react";
+import React, {useState} from "react";
+import { useMediaQuery } from "react-responsive";
 
 // Components
 import Event from "./Event";
 import Header from "./Header.jsx";
 import { Accordion } from "react-bootstrap";
-import OffcanvasExample from "./OffCanvasExample.jsx";
 
 // Data
 import { EventList } from "../Data/Events.js";
 
-export default function Events() {
+export default function Events({selPg,setSelPg}) {
+  const [open, setOpen] = useState(0);
   return (
     <div className="Events">
-      <OffcanvasExample />
-      <Accordion className="Event">
+      <Header setSelPg={setSelPg}/>
+      <Accordion className="Event" activeKey={open}>
         {EventList.map((E) => (
           <Event
             key={E.id}
@@ -22,6 +23,8 @@ export default function Events() {
             event={E.Title}
             desc={E.Desc}
             count={E.count}
+            open={open}
+            setOpen={setOpen}
           />
         ))}
       </Accordion>

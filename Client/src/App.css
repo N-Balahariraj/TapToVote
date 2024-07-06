@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap");
 
 #root {
   height: 100vh;
@@ -23,18 +23,17 @@ main {
   display: flex;
 }
 
-.sideNav {
+.Account {
   width: 20%;
   height: 100%;
   background-color: #f9fafb;
   font-family: "Nunito", "sans-serif";
-  border-right: 2px solid #f1f1f2;
   border-radius: 5px 0 0 5px;
   padding: 1%;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -42,6 +41,7 @@ main {
   height: 100%;
   width: 55%;
   border-right: 2px solid #edeeee;
+  border-left: 2px solid #edeeee;
 
   display: flex;
   flex-direction: column;
@@ -60,9 +60,9 @@ main {
   justify-content: space-around;
 }
 
-.SearchBar {
+.searchBar {
   height: 60%;
-  width: 50%;
+  width: 45%;
   border: 2px solid #f5f5f6;
   border-radius: 0.5rem;
 
@@ -71,13 +71,13 @@ main {
   justify-content: space-around;
 }
 
-.HeadNav {
-  height: 25%;
-  width: 100%;
+.lapNav {
+  height: 100%;
+  width: 45%;
 
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .Event {
@@ -85,7 +85,7 @@ main {
   width: 90%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .Event::-webkit-scrollbar {
@@ -94,7 +94,6 @@ main {
 
 .EventCard{
   margin-top: 1.25rem;
-  border: 2px solid rgb(215, 215, 215);
   border-radius: 0.5rem;
   cursor: pointer;
   overflow: hidden;
@@ -105,6 +104,7 @@ main {
   width: 25%;
   background-color: #f9fafb;
   font-family: "Nunito", "sans-serif";
+  word-wrap: break-word;
 
   display: flex;
   flex-direction: column;
@@ -112,61 +112,44 @@ main {
   align-items: center;
 }
 
-/* Extra small devices (300px and down) */
-/* @media screen and (max-width: 300px) {
-  #root {
-    display: none;
-  }
-} */
 
-/* Extra small devices (phones, 300px and up) */
-@media screen and (min-width: 320px) and (max-width: 425px) {
+@media screen and (min-width: 320px) and (max-width: 1075px) {
   #root {
     height: 100%;
     width: 100%;
     font-size: 0.9rem;
   }
-  /* main {
-    width: 100%;
+  .Account {
+    /* display: none; */
     height: 100%;
-  }
-  article {
-    width: 100%;
-    height: 100%;
-  } */
-  .sideNav {
-    height: 100%;
-    width: 90%;
+    width: 70%;
     position: absolute;
-    display: none;
+    z-index: 50;
   }
   .People {
+    /* display: none; */
+    width: 70%;
     position: absolute;
-    display: none;
+    z-index: 50;
   }
   .Events {
+    /* display: none; */
     height: 100%;
     width: 100%;
-    /* position: absolute; */
   }
-  .SearchBar{
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
+  .searchBar{
+    height: 90%;
+    width: 80%;
+    border-radius: 0.4rem;
   }
-  /* .HeadNav {
+  .header{
+    height: 2.5rem;
+  }
+}
+
+@media screen and (max-width:320px) {
+  #root{
     display: none;
-  } */
+  }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up)
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) 
-@media only screen and (min-width: 768px) {
-} */
-
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) { */
-/* } */
