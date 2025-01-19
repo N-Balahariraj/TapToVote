@@ -8,7 +8,7 @@
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  background-color: #f2f2f3;
+  /* background-color: #f2f2f3; */
   padding: 1%;
   font-size:1rem;
   font-family: "Ubuntu Sans Mono", monospace;
@@ -74,10 +74,11 @@ main {
 .lapNav {
   height: 100%;
   width: 45%;
+  gap:2rem;
 
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
 }
 
 .Event {
@@ -112,6 +113,31 @@ main {
   align-items: center;
 }
 
+.SignBox{
+  width: 70%;
+  height: 70%;
+  border-radius: 1rem;
+  
+  align-self: center;
+  margin: auto;
+  display: flex;
+}
+
+.sign-header{
+  @apply mx-auto my-2 font-roboto text-[#4f46e5] text-2xl
+}
+
+.sign-label{
+  @apply m-2
+}
+
+.sign-input{
+  @apply outline-none rounded-md p-2 bg-[#eeedff]
+}
+
+.sign-btn{
+  @apply bg-[#4f46e5] my-4 rounded-md p-2 text-white
+}
 
 @media screen and (min-width: 320px) and (max-width: 1075px) {
   #root {

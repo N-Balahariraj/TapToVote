@@ -1,6 +1,7 @@
 // Libraries
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../Firebase/Utils/AuthContext';
 
 // Components
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -11,9 +12,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { TbHistoryToggle } from "react-icons/tb";
 import { IoIosPeople } from "react-icons/io"
 
-export function MobileNavbar({ setSelPg }) {
+export function MobileNavbar({ setSelPg, setShowAddEventForm }) {
   const [show, setShow] = useState(false)
   const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
+  const { userDetails } = useAuth()
 
   return (
     isMobile &&
@@ -30,7 +32,7 @@ export function MobileNavbar({ setSelPg }) {
             <a href="#" className='hover:text-[#4f46e5] border-b-2 pb-2'>Community</a>
             <a href="#" className='hover:text-[#4f46e5] border-b-2 pb-2'>Support</a>
             <div className='h-[25%] flex justify-around'>
-              <button className='w-[40%] h-[100%] text-[white] bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1'>+ New event</button>
+              {userDetails.role == 'admin' && <button className='w-[40%] h-[100%] text-[white] bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1' onClick={()=>setShowAddEventForm(true)}>+ New event</button>}
               <button className='flex justify-center items-center w-[15%] h-[100%] text-[white] text-2xl bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1'
                 onClick={() => { setSelPg('Account'); setShow(false) }}>
                 <TbHistoryToggle />
@@ -47,15 +49,16 @@ export function MobileNavbar({ setSelPg }) {
   );
 }
 
-export function LaptopNavbar() {
+export function LaptopNavbar({setShowAddEventForm}) {
   const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
+  const { userDetails } = useAuth()
 
   return (
     !isMobile &&
     <nav className='lapNav'>
       <a href="#" className='hover:text-[#4f46e5]'>Community</a>
       <a href="#" className='hover:text-[#4f46e5]'>Support</a>
-      <button className='w-[40%] h-[65%] text-[white] bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1'>+ New event</button>
+      {userDetails.role == 'admin' && <button className='w-[40%] h-[65%] text-[white] bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1' onClick={()=>setShowAddEventForm(true)}>+ New event</button>}
     </nav>
   );
 }

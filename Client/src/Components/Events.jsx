@@ -1,5 +1,5 @@
 // Libraries
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useMediaQuery } from "react-responsive";
 
 // Components
@@ -12,6 +12,7 @@ import { EventList } from "../Data/Events.js";
 
 export default function Events({selPg,setSelPg}) {
   const [open, setOpen] = useState(0);
+
   return (
     <div className="Events">
       <Header setSelPg={setSelPg}/>

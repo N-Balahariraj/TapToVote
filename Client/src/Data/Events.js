@@ -7,19 +7,19 @@ export let EventList = [
     },
     {
         id : 2,
-        Title : "Drona",
+        Title : "Onum Celebration",
         Desc : "College culturals at end of every year for celebration of forth coming juniors",
         count : 0
     },
     {
         id : 3,
-        Title : "Drona",
+        Title : "Dhandiya",
         Desc : "College culturals at end of every year for celebration of forth coming juniors",
         count : 0
     },
     {
         id : 4,
-        Title : "Drona",
+        Title : "Freswarites",
         Desc : "College culturals at end of every year for celebration of forth coming juniors",
         count : 0
     },

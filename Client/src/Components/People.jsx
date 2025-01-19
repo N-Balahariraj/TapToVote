@@ -1,20 +1,22 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { fetchUsers } from "../Firebase/Utils/users.utils.js";
 
 // Components
 import Person from "./Person";
 
 // Data
-import { peopleList } from "../Data/People";
+// import { peopleList } from "../Data/People";
 
 // Icons
 import { IoIosClose } from "react-icons/io";
 
 export default function People({ selPg,setSelPg }) {
   const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
-  let isPeople=selPg=='People'?'People':'hidden'
-
+  let isPeople=selPg=='People'?'People':'hidden';
+  const [peopleList,setPeopleList] = useState([])
+  useEffect(()=>{fetchUsers().then((users)=>setPeopleList(users)).catch(e => console.log(e))},[])
   return (
     <div className={`${isMobile?isPeople:'People'}`}>
       <header className="h-[10%] w-[100%] flex justify-between items-center p-3">
@@ -26,7 +28,7 @@ export default function People({ selPg,setSelPg }) {
           key={P.id}
           id={P.id}
           profilePic={P.pic}
-          mail={P.mail}
+          mail={P.email}
           name={P.name}
         />
       ))}
