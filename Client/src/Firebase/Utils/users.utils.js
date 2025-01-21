@@ -1,5 +1,5 @@
 import { auth,db } from "../Firebase.js";
-import { doc,setDoc,collection,getDocs,getDoc } from "firebase/firestore";
+import { doc,setDoc,collection,getDocs,getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, signOut } from "firebase/auth";
 
 export async function SignUp(name,email,password,role){
@@ -8,7 +8,8 @@ export async function SignUp(name,email,password,role){
         await setDoc(doc(db, "users", auth.currentUser.uid), {
             name : name,
             email: email,
-            role : role
+            role : role,
+            events : []
         });
     }
     return auth.currentUser;
@@ -27,7 +28,8 @@ export async function SignInWithGoogle(role){
         await setDoc(doc(db,"users",user.uid),{
             name : user.displayName,
             email : user.email,
-            role : role
+            role : role,
+            events : []
         })
     }
     return user;
@@ -49,6 +51,18 @@ export async function fetchUsers(){
         users.push({ id: doc.id, ...doc.data() });
     });
     return users;
+}
+
+export async function updateVotes(uid,vote){
+    await updateDoc(doc(db,'users',uid),{
+        events: arrayUnion(vote)
+    })
+}
+
+export async function mapEvent(uid,eid){
+    await updateDoc(doc(db,'users',uid),{
+        events: arrayUnion(eid)
+    })
 }
 
 export async function SignOut(){

@@ -30,18 +30,18 @@ export default function Account({ selPg, setSelPg }) {
       </header>
       <dl className="h-[50%] w-[90%] flex flex-col flex-wrap overflow-y-auto">
         <dt className="text-lg font-bold mb-5">Your votes</dt>
-        {peopleList.map((P) =>
-          P.votes.map((e) => {
+        {
+          userDetails.events.map((e) => {
             return (
               <dd className="h-[10%] w-[100%] flex justify-around">
-                <span className="h-[90%] w-[10%] border-2 rounded-lg text-center text-sm">
+                <span className="h-[90%] w-[10%] border-2 rounded-lg text-center text-sm font-bold content-center">
                   {e.charAt(0)}
                 </span>
-                <span className="h-[90%] w-[75%]">{e}</span>
+                <span className="h-[90%] w-[75%] content-center">{e.split('-')[0]}</span>
               </dd>
             );
           })
-        )}
+        }
       </dl>
       <footer className="h-[10%] w-[80%] flex self-start items-center justify-between border-2 rounded-lg p-1 gap-2">
         {user.photoURL ? (
@@ -53,7 +53,7 @@ export default function Account({ selPg, setSelPg }) {
         ) : (
           <span className="h-[100%] w-[30%] border-2 rounded-full flex items-center justify-center text-2xl font-bold bg-slate-400">{userDetails.name.charAt(0)}</span>
         )}
-        <div className="h-[100%] w-[60%] flex flex-col items-center">
+        <div className="h-[100%] w-[60%] flex flex-col items-center justify-center">
           <span className="w-[100%]">{userDetails.name}</span>
           <button
             className="w-[100%] flex items-center gap-2 text-[#4f46e5]"

@@ -25,8 +25,8 @@ export default function People({ selPg,setSelPg }) {
       </header>
       {peopleList.map((P) => (
         <Person
-          key={P.id}
-          id={P.id}
+          key={P.uid}
+          id={P.uid}
           profilePic={P.pic}
           mail={P.email}
           name={P.name}
