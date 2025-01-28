@@ -1,4 +1,4 @@
-import { doc, setDoc, getDocs, updateDoc, deleteDoc, collection, where } from "firebase/firestore";
+import { doc, setDoc, getDocs, updateDoc, deleteDoc, collection, where, increment } from "firebase/firestore";
 import { db } from "../Firebase";
 
 export async function getEvents(uid,role) {
@@ -28,7 +28,7 @@ export async function setEvent(uid, name, date, desc) {
         date: date,
         desc: desc,
         votes: 0,
-        counts: 0
+        likes: 0
     })
 }
 
@@ -38,6 +38,13 @@ export async function updateEvent(id, name, date, desc) {
         date: date,
         desc: desc
     })
+}
+
+export async function updateVoteCount(id, vote) {
+    await updateDoc(doc(db, 'events', id), {
+        votes: increment(1),
+        likes: increment(vote)
+    });
 }
 
 export async function deleteEvent(eid) {

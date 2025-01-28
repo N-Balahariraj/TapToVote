@@ -8,9 +8,6 @@ import { useAuth } from "../Firebase/Utils/AuthContext";
 import { MdLogout } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 
-// Data
-import { peopleList } from "../Data/People";
-
 export default function Account({ selPg, setSelPg }) {
   const isMobile = useMediaQuery({ minWidth: "320px", maxWidth: "1075px" });
   let isAccount = selPg == "Account" ? "Account" : "hidden";
@@ -35,9 +32,9 @@ export default function Account({ selPg, setSelPg }) {
             return (
               <dd className="h-[10%] w-[100%] flex justify-around">
                 <span className="h-[90%] w-[10%] border-2 rounded-lg text-center text-sm font-bold content-center">
-                  {e.charAt(0)}
+                  {userDetails.role == 'admin' ? e.charAt(0) : e.eid.charAt(0)}
                 </span>
-                <span className="h-[90%] w-[75%] content-center">{e.split('-')[0]}</span>
+                <span className="h-[90%] w-[75%] content-center">{userDetails.role == 'admin' ? e.split('-')[0] : e.eid.split('-')[0]}</span>
               </dd>
             );
           })
