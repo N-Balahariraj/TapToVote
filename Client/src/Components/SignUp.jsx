@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useMediaQuery } from "react-responsive";
 import { useNavigate, Link } from 'react-router-dom';
 import { SignUp } from '../Firebase/Utils/users.utils.js';
 import {toast,ToastContainer} from 'react-toastify'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function Signup() {
   const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
-  const navigate = useNavigate();
+  const [loading,setLoading] = useState(false)
 
   return (
     <>
@@ -22,23 +23,19 @@ export default function Signup() {
                 const pass = e.target.elements.pass.value
                 const confPass = e.target.elements.confPass.value
                 const role = 'user'
-                // console.log({name,email,pass,confPass})
                 if(pass !== confPass){
                     toast('Check you password',{type:'error'})
                     return
                 }
                 try {
-                    const user = await SignUp(name,email,pass,role)
-                    if(!user){
-                        toast('User not registered. Try again later!',{type:'error'})
-                        return
-                    }
-                } catch (error) {
+                    await SignUp(name,email,pass,role)
+                    toast('User registered successfully',{type:'success'})
+                    toast('A verification mail has been sent to your email.',{type:'info'})
+                } 
+                catch (error) {
                     toast(error.message,{type:'error'})
-                    return
+                    setLoading(false)
                 }
-                toast('User registered successfully',{type:'success'})
-                navigate('/Home')
             }}
         >
             <span className='sign-header'>Register</span>
@@ -50,7 +47,9 @@ export default function Signup() {
             <input className='sign-input' type="password" name='pass'/>
             <label className='sign-label' htmlFor="confPass">Confirm Password</label>
             <input className='sign-input' type="password" name='confPass'/>
-            <button className='sign-btn' type='submit'>Sign Up</button>
+            <button className='sign-btn' type='submit' onClick={()=>setLoading(true)} disabled={loading}>
+                {loading?<BeatLoader loading={loading}/>:'Sign Up'}
+            </button>
             <span className='m-2'>Already have an account? <Link to={'/SignIn'} className='text-[#4f46e5] underline'>SignIn</Link></span>
         </form>
     </div>

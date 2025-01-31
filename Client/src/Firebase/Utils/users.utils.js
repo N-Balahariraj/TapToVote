@@ -1,9 +1,9 @@
 import { auth, db } from "../Firebase.js";
 import { doc, setDoc, collection, getDocs, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, sendEmailVerification } from "firebase/auth";
 
 export async function SignUp(name, email, password, role) {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const registeredUser = await createUserWithEmailAndPassword(auth, email, password);
     if (auth.currentUser) {
         await setDoc(doc(db, "users", auth.currentUser.uid), {
             name: name,
@@ -11,6 +11,10 @@ export async function SignUp(name, email, password, role) {
             role: role,
             events: []
         });
+
+        const user = registeredUser.user
+
+        await sendEmailVerification(user)
     }
     return auth.currentUser;
 }

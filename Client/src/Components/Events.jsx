@@ -25,7 +25,7 @@ export default function Events({selPg,setSelPg}) {
     <div className="Events">
       <Header setSelPg={setSelPg} setSearchInput={setSearchInput}/>
       <Accordion className="Event" activeKey={open}>
-        {userDetails.role == 'user' && <span className="mt-3 border-2 rounded-md border-red-700 p-2 bg-red-100">Be coutious !. You can vote only once.</span>}
+        {userDetails.role == 'user' && <span className="mt-3 border-2 rounded-md border-red-700 p-2 bg-red-100">Be coutious !. You can vote an event only once.</span>}
         {filteredEvents.map((E) => (
           <Event
             key={E.id}

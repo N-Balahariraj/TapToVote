@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Events from "./Components/Events";
 import People from "./Components/People";
 import Account from "./Components/Account";
-import Signin from "./Components/SignIn";
-import Signup from "./Components/SignUp";
+import Signin from "./Components/Signin";
+import Signup from "./Components/Signup";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 // Style Sheets 
