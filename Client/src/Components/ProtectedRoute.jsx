@@ -1,6 +1,11 @@
+// Libraries
 import React, { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
+
+// Firebase
 import { useAuth } from '../Firebase/Utils/AuthContext.jsx'
+
+// External Components
 import PacmanLoader from 'react-spinners/PacmanLoader'
 import { Modal } from 'react-bootstrap'
 

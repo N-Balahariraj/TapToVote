@@ -1,7 +1,12 @@
+// Libraries
 import React, { useState } from 'react';
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from 'react-router-dom';
+
+// Firebase
 import { SignIn } from '../Firebase/Utils/users.utils.js'
+
+// External Components
 import { toast, ToastContainer } from 'react-toastify';
 import BeatLoader from 'react-spinners/BeatLoader.js';
 

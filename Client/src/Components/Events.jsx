@@ -1,15 +1,15 @@
 // Libraries
 import React, {useEffect, useState} from "react";
-import { useMediaQuery } from "react-responsive";
-import { getEvents } from "../Firebase/Utils/events.utils.js";
 
 // Components
 import Event from "./Event";
 import Header from "./Header.jsx";
+
+// External Components
 import { Accordion } from "react-bootstrap";
 
-// Data
-import { EventList } from "../Data/Events.js";
+// Firebase
+import { getEvents } from "../Firebase/Utils/events.utils.js";
 import { useAuth } from "../Firebase/Utils/AuthContext.jsx";
 
 export default function Events({selPg,setSelPg}) {

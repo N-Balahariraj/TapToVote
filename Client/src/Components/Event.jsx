@@ -1,17 +1,24 @@
+// Libraries
 import React, { useEffect, useState } from "react";
+
+// Components
+import AddEvent from "./AddEvent";
+
+// External Components
 import Accordion from 'react-bootstrap/Accordion';
 import Modal from 'react-bootstrap/Modal'
-import { RiDeleteBinFill } from "react-icons/ri";
 import Card from 'react-bootstrap/Card';
+import { toast, ToastContainer } from "react-toastify";
+
+// Firebase
+import { deleteEvent, updateVoteCount } from "../Firebase/Utils/events.utils";
+import { mapEvent } from "../Firebase/Utils/users.utils";
 import { useAuth } from "../Firebase/Utils/AuthContext";
-import AddEvent from "./AddEvent";
 
 // Icons
 import { FaThumbsDown, FaThumbsUp, FaEdit } from "react-icons/fa";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
-import { deleteEvent, updateVoteCount } from "../Firebase/Utils/events.utils";
-import { toast, ToastContainer } from "react-toastify";
-import { mapEvent } from "../Firebase/Utils/users.utils";
+import { RiDeleteBinFill } from "react-icons/ri";
 
 export default function Event({ id, name, desc, date, open, setOpen }) {
   const [showAddEventForm, setShowAddEventForm] = useState(false)

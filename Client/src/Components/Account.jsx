@@ -1,6 +1,8 @@
 // Libraries
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+
+// Firebase
 import { SignOut } from "../Firebase/Utils/users.utils";
 import { useAuth } from "../Firebase/Utils/AuthContext";
 

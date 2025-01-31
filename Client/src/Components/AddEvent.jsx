@@ -1,9 +1,14 @@
+// Libraries
 import React, { useState } from 'react'
-import Modal from 'react-bootstrap/Modal';
+
+// Firebase
 import { setEvent, updateEvent } from '../Firebase/Utils/events.utils';
-import { toast, ToastContainer } from 'react-toastify';
 import { mapEvent } from '../Firebase/Utils/users.utils';
 import { useAuth } from '../Firebase/Utils/AuthContext';
+
+// External components
+import Modal from 'react-bootstrap/Modal';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function AddEvent({show, onHide, event}) {
     const {user,userDetails} = useAuth()

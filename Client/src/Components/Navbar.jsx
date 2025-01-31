@@ -1,9 +1,11 @@
 // Libraries
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive'
+
+// Firebase
 import { useAuth } from '../Firebase/Utils/AuthContext';
 
-// Components
+// External Components
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from 'react-bootstrap/Button';
 

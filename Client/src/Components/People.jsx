@@ -6,9 +6,6 @@ import { fetchUsers } from "../Firebase/Utils/users.utils.js";
 // Components
 import Person from "./Person";
 
-// Data
-// import { peopleList } from "../Data/People";
-
 // Icons
 import { IoIosClose } from "react-icons/io";
 
