@@ -12,6 +12,7 @@ import BeatLoader from 'react-spinners/BeatLoader'
 
 export default function Signup() {
   const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
+  const navigate = useNavigate();
   const [loading,setLoading] = useState(false)
 
   return (
@@ -37,6 +38,8 @@ export default function Signup() {
                     await SignUp(name,email,pass,role)
                     toast('User registered successfully',{type:'success'})
                     toast('A verification mail has been sent to your email.',{type:'info'})
+                    setLoading(false)
+                    setTimeout(()=>navigate('/SignIn'),5000)
                 } 
                 catch (error) {
                     toast(error.message,{type:'error'})
