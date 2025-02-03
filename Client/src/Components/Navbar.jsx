@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive'
 
 // Firebase
-import { useAuth } from '../Firebase/Utils/AuthContext';
+import { useAuth } from '../ContextAPIs/AuthContext';
 
 // External Components
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -33,7 +33,7 @@ export function MobileNavbar({ setSelPg, setShowAddEventForm }) {
           <nav className='flex flex-col justify-around h-[30%] w-[100%] '>
             <a href="#" className='hover:text-[#4f46e5] border-b-2 pb-2'>Community</a>
             <a href="#" className='hover:text-[#4f46e5] border-b-2 pb-2'>Support</a>
-            <div className='h-[25%] flex justify-around'>
+            <div className='h-[25%] flex gap-5'>
               {userDetails.role == 'admin' && <button className='w-[40%] h-[100%] text-[white] bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1' onClick={()=>setShowAddEventForm(true)}>+ New event</button>}
               <button className='flex justify-center items-center w-[15%] h-[100%] text-[white] text-2xl bg-[#4f46e5] hover:bg-[#655ee7] rounded-lg p-1'
                 onClick={() => { setSelPg('Account'); setShow(false) }}>

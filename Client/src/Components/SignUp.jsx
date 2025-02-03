@@ -23,6 +23,7 @@ export default function Signup() {
             className={`${isMobile?'w-[100%]':'w-[50%]'} h-[100%] flex flex-col p-2 font-nunito`}
             onSubmit={async (e)=>{
                 e.preventDefault();
+                setLoading(true);
                 const name = e.target.elements.name.value
                 const email = e.target.elements.email.value
                 const pass = e.target.elements.pass.value
@@ -52,7 +53,7 @@ export default function Signup() {
             <input className='sign-input' type="password" name='pass'/>
             <label className='sign-label' htmlFor="confPass">Confirm Password</label>
             <input className='sign-input' type="password" name='confPass'/>
-            <button className='sign-btn' type='submit' onClick={()=>setLoading(true)} disabled={loading}>
+            <button className='sign-btn' type='submit' disabled={loading}>
                 {loading?<BeatLoader loading={loading}/>:'Sign Up'}
             </button>
             <span className='m-2'>Already have an account? <Link to={'/SignIn'} className='text-[#4f46e5] underline'>SignIn</Link></span>

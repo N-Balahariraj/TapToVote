@@ -1,5 +1,6 @@
 // Libraries
 import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 // Components
 import AddEvent from "./AddEvent";
@@ -13,14 +14,16 @@ import { toast, ToastContainer } from "react-toastify";
 // Firebase
 import { deleteEvent, updateVoteCount } from "../Firebase/Utils/events.utils";
 import { mapEvent } from "../Firebase/Utils/users.utils";
-import { useAuth } from "../Firebase/Utils/AuthContext";
+import { useAuth } from "../ContextAPIs/AuthContext";
 
 // Icons
 import { FaThumbsDown, FaThumbsUp, FaEdit } from "react-icons/fa";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { useRefresh } from "../ContextAPIs/RefreshContext";
 
 export default function Event({ id, name, desc, date, open, setOpen }) {
+  const isMobile = useMediaQuery({ minWidth: '320px', maxWidth: '1075px' })
   const [showAddEventForm, setShowAddEventForm] = useState(false)
   const [showConformation, setShowConformation] = useState(false)
   const [hide, setHide] = useState(" ")
@@ -28,10 +31,11 @@ export default function Event({ id, name, desc, date, open, setOpen }) {
   const [upVote, setUpVote] = useState(0)
   const [downVote, setDownVote] = useState(0)
   const { user, userDetails } = useAuth();
+  const {refresh,triggerRefresh} = useRefresh();
 
   useEffect(()=>{
     userDetails.role === 'user' && userDetails.events.some(event => event.eid === id && setIsVotable(event.vote))
-  },[user,userDetails])
+  },[user,userDetails,refresh])
 
   return (
     <>
@@ -67,14 +71,17 @@ export default function Event({ id, name, desc, date, open, setOpen }) {
                   catch (e) {
                     toast(e.message, { type: 'error' })
                   }
+                  finally{
+                    triggerRefresh(prev => !prev)
+                  }
                 }}
               >
                 Confirm
               </button>
             </p>
           </Modal>
-          <span className="w-[30%] font-semibold text-[1rem] text-[#4f46e5]">{name}</span>
-          <span className="w-[20%] font-semibold text-[1rem] text-[#4f46e5]">{date}</span>
+          <span className={`${isMobile?'w-[50%]':'w-[30%]' } font-semibold text-[1rem] text-[#4f46e5]`}>{name}</span>
+          <span className={`${isMobile?'hidden':'w-[20%]'} font-semibold text-[1rem] text-[#4f46e5]`}>{date}</span>
           {
             userDetails.role == 'admin' ?
               <>
@@ -94,6 +101,9 @@ export default function Event({ id, name, desc, date, open, setOpen }) {
                     }
                     catch (error) {
                       toast(error.message, { type: 'error' })
+                    }
+                    finally{
+                      triggerRefresh(prev => !prev)
                     }
                   }}
                   className="text-xl hover:text-[#4f46e5]"

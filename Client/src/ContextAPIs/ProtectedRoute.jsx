@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
 // Firebase
-import { useAuth } from '../Firebase/Utils/AuthContext.jsx'
+import { useAuth } from './AuthContext.jsx'
 
 // External Components
 import PacmanLoader from 'react-spinners/PacmanLoader'
@@ -14,12 +14,12 @@ export default function ProtectedRoute({ children }) {
     const { user, userDetails, loading } = useAuth()
     const [showModal, setShowModal] = useState(true)
     if (loading) {
-        return <PacmanLoader size={40} color='#c860f1' className=' self-center mx-auto' />
+        return <PacmanLoader size={40} color='#4f46e5' className=' self-center mx-auto' />
     }
     if (!user) {
         return <Navigate to={'/SignIn'} state={{ from: location }} replace />
     }
-    if (userDetails.role === 'user' && !user.emailVerified) {
+    if (userDetails.role == 'user' && !user.emailVerified) {
         return (
             <Modal
                 show={showModal}

@@ -4,14 +4,16 @@ import React, { useState } from 'react'
 // Firebase
 import { setEvent, updateEvent } from '../Firebase/Utils/events.utils';
 import { mapEvent } from '../Firebase/Utils/users.utils';
-import { useAuth } from '../Firebase/Utils/AuthContext';
+import { useAuth } from '../ContextAPIs/AuthContext';
 
 // External components
 import Modal from 'react-bootstrap/Modal';
 import { toast, ToastContainer } from 'react-toastify';
+import { useRefresh } from '../ContextAPIs/RefreshContext';
 
 export default function AddEvent({show, onHide, event}) {
     const {user,userDetails} = useAuth()
+    const {triggerRefresh} = useRefresh();
     return (
         <>
             <ToastContainer/>
@@ -50,7 +52,10 @@ export default function AddEvent({show, onHide, event}) {
                         } catch (e) {
                             toast(e.message, { type: 'error' })
                         }
-                        onHide()
+                        finally{
+                            triggerRefresh(prev => !prev)
+                            onHide()
+                        }
                     }}
                 >
                     <label htmlFor="eventTitle" className='m-2 text-xl font-nunito'>Title</label>

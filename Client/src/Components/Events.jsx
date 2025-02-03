@@ -10,14 +10,16 @@ import { Accordion } from "react-bootstrap";
 
 // Firebase
 import { getEvents } from "../Firebase/Utils/events.utils.js";
-import { useAuth } from "../Firebase/Utils/AuthContext.jsx";
+import { useAuth } from "../ContextAPIs/AuthContext.jsx";
+import { useRefresh } from "../ContextAPIs/RefreshContext.jsx";
 
 export default function Events({selPg,setSelPg}) {
   const [open, setOpen] = useState(0);
   const [eventList, setEventList] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const{user,userDetails} = useAuth();
-  useEffect(()=>{getEvents(user.uid,userDetails.role).then((events)=>setEventList(events)).catch((e)=>console.log(e))},[])
+  const{refresh} = useRefresh();
+  useEffect(()=>{getEvents(user.uid,userDetails.role).then((events)=>setEventList(events)).catch((e)=>console.log(e))},[refresh])
   const filteredEvents = eventList.filter((event) =>
     event.name.toLowerCase().includes(searchInput.toLowerCase())
   );

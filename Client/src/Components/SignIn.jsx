@@ -23,6 +23,7 @@ export default function Signin() {
                     className={`${isMobile ? 'w-[100%]' : 'w-[50%]'} self-center flex flex-col p-2 font-nunito`}
                     onSubmit={async (e) => {
                         e.preventDefault();
+                        setLoading(true)
                         const email = e.target.elements.email.value
                         const pass = e.target.elements.pass.value
                         try {
@@ -36,6 +37,7 @@ export default function Signin() {
                         } 
                         catch (error) {
                             toast(error.message, { type: 'error' })
+                            setLoading(false)
                             return
                         }
                     }}
@@ -45,7 +47,7 @@ export default function Signin() {
                     <input className='sign-input' type="mail" name='email' />
                     <label className='sign-label' htmlFor="pass">Password</label>
                     <input className='sign-input' type="password" name='pass' />
-                    <button className='sign-btn' type='submit' onClick={()=>setLoading(true)} disabled={loading}>
+                    <button className='sign-btn' type='submit' disabled={loading}>
                         {loading ? <BeatLoader loading={loading} /> : 'Sign In'}
                     </button>
                     <span className='m-2'>Don't have an account? <Link to={'/'} className='text-[#4f46e5] underline'>SignUp</Link></span>

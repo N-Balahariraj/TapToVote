@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 // Firebase
 import { SignOut } from "../Firebase/Utils/users.utils";
-import { useAuth } from "../Firebase/Utils/AuthContext";
+import { useAuth } from "../ContextAPIs/AuthContext";
 
 // Icons
 import { MdLogout } from "react-icons/md";

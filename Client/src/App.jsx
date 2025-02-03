@@ -8,7 +8,7 @@ import People from "./Components/People";
 import Account from "./Components/Account";
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
-import ProtectedRoute from "./Components/ProtectedRoute";
+import ProtectedRoute from "./ContextAPIs/ProtectedRoute";
 
 // Style Sheets 
 import 'bootstrap/dist/css/bootstrap.min.css';
